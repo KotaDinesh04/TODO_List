@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.sign-in-page-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.signup-container a {
+    color: #2878fa;
+}
+
+.signup-container button {
+    background-color: #2878fa;
+}
+

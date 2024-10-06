@@ -8,10 +8,11 @@ router.post('/signup',async (req,res)=>{
     const { name, emailId, password } = req.body;
     try {
         if(!name || !emailId || !password) {
-            res.status(400).json({message: "Error!! Input not valid!!"});
+            return res.status(400).json({message: "Error!! Input not valid!!"});
         }
-        if(userModel.findOne({emailId})) {
-            res.status(400).json({message: "Error!! User already exists"});
+        const existingCheck = await userModel.findOne({emailId});
+        if(existingCheck) {
+            return res.status(400).json({message: "Error!! User already exists"});
         }
         const salt = await bcrypt.genSalt(10);
         const hashedpass = await bcrypt.hash(password,salt);
@@ -21,9 +22,9 @@ router.post('/signup',async (req,res)=>{
             password: hashedpass
         });
         await data.save();
-        res.status(201).json(data);
+        return res.status(201).json(data);
     } catch(error) {
-        res.status(500).json({message: error.message});
+        return res.status(500).json({message: error.message});
     }
 });
 

@@ -13,6 +13,11 @@ app.use(express.json());
 const makeConnection = require('./Mongodb');
 makeConnection();
 
+const userModel = require('./Models/User');
+const userRoute = require('./Routes/UserRoute');
+
+app.use('/api',userRoute);
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });

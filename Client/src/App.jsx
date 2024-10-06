@@ -3,6 +3,7 @@ import { Home } from './Components/Home'
 import './index.css'
 import {Signup} from "./Components/Signup"
 import { TodoList } from './Components/TodoList'
+import { ActiveTodos } from './Components/ActiveTodos'
 export const App = () => {
   const flag = true;
   return (
@@ -12,6 +13,7 @@ export const App = () => {
           <Route path='/' element={<Home /> }></Route>
           <Route path='/signup' element={<Signup />}></Route>
           <Route path='/todolist' element={<TodoList />}></Route>
+          <Route path='/displaytodo' element={<ActiveTodos />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

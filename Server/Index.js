@@ -18,8 +18,17 @@ const userRoute = require('./Routes/UserRoute');
 
 const signInRoute = require('./Routes/Sign-inRoute');
 
+const createTodoRoute = require('./Routes/CreateTodo');
+const getTodos = require('./Routes/GetTodos');
+const deleteTodo = require('./Routes/DeleteTodo');
+const updateTodo = require('./Routes/UpdateTodo');
+
 app.use('/api',userRoute);
 app.use('/api',signInRoute);
+app.use('/api',createTodoRoute);
+app.use('/api',getTodos);
+app.use('/api',deleteTodo);
+app.use('/api',updateTodo)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

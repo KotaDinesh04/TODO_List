@@ -29,6 +29,7 @@ export const Home = () => {
                 password: password
             });
             flip();
+            localStorage.setItem("emailId",email); 
             navigate('/todolist');
         } catch(error) {
             alert(error.response?.data?.message || "An error occurred. Please try again.");

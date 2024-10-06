@@ -39,7 +39,7 @@ export const Signup = () => {
                 password: password,
             });
             alert("User creation success");
-            setFlag(true);
+            setFlag(true);   
             navigate("/"); // Redirect to home page
         } catch (error) {
             alert(error);

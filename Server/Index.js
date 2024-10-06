@@ -16,7 +16,10 @@ makeConnection();
 const userModel = require('./Models/User');
 const userRoute = require('./Routes/UserRoute');
 
+const signInRoute = require('./Routes/Sign-inRoute');
+
 app.use('/api',userRoute);
+app.use('/api',signInRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

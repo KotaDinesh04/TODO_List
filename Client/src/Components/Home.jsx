@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { NavBar } from "./NavBar";
 import { Link,useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import LoadingBar from 'react-top-loading-bar'  
 export const Home = () => {
     const [flag, setFlag] = useState(false);
     const [ email,setEmail ] = useState("");
     const [ password,setPassword ] = useState("");
-
+    const [progress, setProgress] = useState(0)
     const flip = () => {
         setFlag(true);
     };
@@ -24,12 +24,15 @@ export const Home = () => {
     const handleSubmitClick = async(e)=>{
         e.preventDefault();
         try {
+            setProgress(20);
             const res = await axios.post('http://localhost:5000/api/login',{
                 emailId: email,
                 password: password
             });
             flip();
+            setProgress(50);
             localStorage.setItem("emailId",email); 
+            setProgress(100);
             navigate('/todolist');
         } catch(error) {
             alert(error.response?.data?.message || "An error occurred. Please try again.");
@@ -39,6 +42,11 @@ export const Home = () => {
     const navigate = useNavigate();
     return (
         <div>
+            <LoadingBar
+                color='#f11946'
+                progress={progress}
+                onLoaderFinished={() => setProgress(0)}
+            />
             <NavBar flag={flag} />
             <div className="sign-in-page-home">
                 <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

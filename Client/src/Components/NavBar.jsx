@@ -15,8 +15,8 @@ export const NavBar = (props) => {
     navigation = [
       { name: 'Home', href: '/todolist', current: true },
       { name: 'Active Todos', href: '/displaytodo', current: false },
-      { name: 'Completed Todos', href: '/todolist', current: false },
-      { name: 'All Todos', href: '/todolist', current: false },
+      { name: 'Completed Todos', href: '/completedtodos', current: false },
+      { name: 'All Todos', href: '/alltodos', current: false },
     ]
   }
   else {

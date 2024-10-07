@@ -11,8 +11,9 @@ import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
 import { format } from 'date-fns';
 import LoadingBar from 'react-top-loading-bar'
-
-export const ActiveTodos = () => {
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@headlessui/react';
+export const CompletedTodos = () => {
     const [todos, setTodos] = useState([]);
     const [progress,setProgress] = useState(0);
     const renderTodos = async ()=> {
@@ -65,13 +66,21 @@ export const ActiveTodos = () => {
         }
     }
     // renderTodos();
-    let count = 0;
-    const countActive = () => {
-        todos.map((todo,index)=> {
-            if(!todo.completed) count++;
-        })
+    const handleDeleteClick = async (id)=> {
+        await axios.delete('http://localhost:5000/api/deletetodo', {
+            params: {
+                id: id,
+            }
+        });
+        renderTodos();
     }
-    countActive();
+    let count = 0;
+    const countCompleted = ()=> {
+        todos.map((todo,index)=>{
+            if(todo.completed) count++;
+        });
+    }
+    countCompleted();
     return (
         <div>
         <LoadingBar
@@ -83,9 +92,9 @@ export const ActiveTodos = () => {
             {count != 0 ? (
                 <div className="todos-container-todolist">
                 {todos.map((todo, index) => {
-                    if (!todo.completed) {
+                    if (todo.completed) {
                         return (
-                            <Card variant="outlined" className="todolist-display-card" sx={{ maxWidth: 360 }} key={index} >
+                            <Card variant="outlined" className="todolist-display-card-completed" sx={{ maxWidth: 360 }} key={index} >
                                 <Box sx={{ p: 2 }}>
                                     <Stack
                                         direction="row"
@@ -95,9 +104,7 @@ export const ActiveTodos = () => {
                                             {todo.name}
                                         </Typography>
                                         <Typography gutterBottom variant="h6" component="div">
-                                            <FormGroup>
-                                                <FormControlLabel control={<Checkbox />} label="Complete" color='primary' onChange={() => handleCheckChange(todo._id)} />
-                                            </FormGroup>
+                                            <Button onClick={()=>handleDeleteClick(todo._id)}><DeleteIcon color='primary'></DeleteIcon></Button>
                                         </Typography>
                                     </Stack>
                                 </Box>
@@ -115,7 +122,7 @@ export const ActiveTodos = () => {
                     }
                 })}
             </div>
-            ): (<h1>Nothing to display</h1>)}
+            ) : (<h1>Nothing to display</h1>)}
         </div>
     )
 }

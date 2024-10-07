@@ -22,13 +22,15 @@ const createTodoRoute = require('./Routes/CreateTodo');
 const getTodos = require('./Routes/GetTodos');
 const deleteTodo = require('./Routes/DeleteTodo');
 const updateTodo = require('./Routes/UpdateTodo');
+const getSpecificTodo = require('./Routes/GetTodoUsingId');
 
 app.use('/api',userRoute);
 app.use('/api',signInRoute);
 app.use('/api',createTodoRoute);
 app.use('/api',getTodos);
 app.use('/api',deleteTodo);
-app.use('/api',updateTodo)
+app.use('/api',updateTodo);
+app.use('/api',getSpecificTodo);    
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

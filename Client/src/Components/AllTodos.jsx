@@ -3,7 +3,6 @@ import { NavBar } from './NavBar';
 import axios from 'axios';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import { FormControlLabel, FormGroup, TextField, Typography } from '@mui/material';
-import { ActiveTodos } from './ActiveTodos';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -13,43 +12,9 @@ import Checkbox from '@mui/material/Checkbox';
 import { format } from 'date-fns';
 import LoadingBar from 'react-top-loading-bar'
 
-export const TodoList = () => {
-    const flag = true;
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [progress, setProgress] = useState(0)
-
-    const handleTitleChange = (e) => {
-        setTitle(e.target.value);
-        // console.log(title);
-    }
-
-    const handleDescChange = (e) => {
-        setDescription(e.target.value);
-    }
-
-    const handleAddClick = async () => {
-        try {
-            setProgress(30);
-            const data = await axios.post('http://localhost:5000/api/createtodo', {
-                name: title,
-                description: description,
-                emailId: localStorage.getItem('emailId')
-            });
-            setProgress(70);
-            if (data) {
-                alert("Successfully created todo");
-                setProgress(100);
-                renderTodos();
-            } else {
-                alert("Error creating todo");
-            }
-        } catch (error) {
-            alert(error);
-        }
-    }
-
+export const AllTodos = () => {
     const [todos, setTodos] = useState([]);
+    const [progress, setProgress] = useState(0);
     const renderTodos = async () => {
         setProgress(30);
         try {
@@ -96,23 +61,18 @@ export const TodoList = () => {
         } catch (error) {
             console.log(error.message);
         }
-    }
+    } 
 
-    return (
-        <div>
-            <LoadingBar
+
+  return (
+    <div>
+        <NavBar flag={true} />
+        <LoadingBar
                 color='#f11946'
                 progress={progress}
                 onLoaderFinished={() => setProgress(0)}
-            />
-            <NavBar flag={flag} />
-            <Typography variant='h5' color='primary' style={{ textAlign: 'center', marginTop: '5vh' }}>Add a new todo</Typography>
-            <div className="add-container-todolist">
-                <TextField id="outlined-basic" label="Enter the todo title" variant="outlined" onChange={handleTitleChange} style={{ marginRight: "2vw", marginBottom: '2vh' }} required />
-                <TextField id="outlined-basic" label="Enter the todo description" variant="outlined" onChange={handleDescChange} style={{ marginRight: "2vw", marginBottom: '2vh' }} />
-                <button onClick={handleAddClick}><AddCircleOutlinedIcon fontSize='large' color='primary'></AddCircleOutlinedIcon></button>
-            </div>
-            <div className="todos-container-todolist">
+        />
+        <div className="todos-container-todolist">
                 {todos.map((todo, index) => {
                     if (!todo.completed) {
                         return (
@@ -181,6 +141,6 @@ export const TodoList = () => {
                     }
                 })}
             </div>
-        </div>
-    );
-};
+    </div>
+  )
+}

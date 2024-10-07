@@ -21,3 +21,50 @@
 .navbar-container {
     color: white;
 }
+
+.add-container-todolist {
+    display: flex;
+    justify-content: center;
+    margin: 3vh;
+    flex-wrap: wrap;
+}
+
+.todos-container-todolist {
+    margin-left: 10vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.todolist-display-card {
+    margin: 2vw;
+    width: 50vw;
+    /* text-align: center; */
+}
+.todolist-display-card-completed {
+    margin: 2vw;
+    width: 50vw;
+    /* text-align: center; */
+    opacity: 50%;
+}
+
+.checkbox-todo {
+    margin-left: 10vw;
+}
+
+@media (max-width: 600px) {
+    .add-container-todolist {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 3vh;
+        flex-wrap: wrap;
+    }   
+    .todos-container-todolist {
+        justify-content: center;
+        margin-left: 0px;
+    }
+} 
+

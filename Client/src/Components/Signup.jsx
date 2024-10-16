@@ -33,7 +33,7 @@ export const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission
         try {
-            const res = await axios.post('http://localhost:5000/api/signup', {
+            const res = await axios.post('https://server-pi-gold.vercel.app/api/signup', {
                 name: name,
                 emailId: email,
                 password: password,

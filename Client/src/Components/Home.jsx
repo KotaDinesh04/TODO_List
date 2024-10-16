@@ -25,7 +25,7 @@ export const Home = () => {
         e.preventDefault();
         try {
             setProgress(20);
-            const res = await axios.post('http://localhost:5000/api/login',{
+            const res = await axios.post('https://server-pi-gold.vercel.app/api/login',{
                 emailId: email,
                 password: password
             });

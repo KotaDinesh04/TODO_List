@@ -18,7 +18,7 @@ export const AllTodos = () => {
     const renderTodos = async () => {
         setProgress(30);
         try {
-            const data = await axios.get('http://localhost:5000/api/gettodos', {
+            const data = await axios.get('https://server-pi-gold.vercel.app/api/gettodos', {
                 params: {
                     emailId: localStorage.getItem('emailId'),
                 }
@@ -38,7 +38,7 @@ export const AllTodos = () => {
     const handleCheckChange = async (id) => {
         try {
             setProgress(30);
-            const data = await axios.get('http://localhost:5000/api/gettodousingid', {
+            const data = await axios.get('https://server-pi-gold.vercel.app/api/gettodousingid', {
                 params: {
                     id: id
                 }
@@ -49,7 +49,7 @@ export const AllTodos = () => {
             }
             const todo = data.data;
             todo.completed = !todo.completed;
-            await axios.post('http://localhost:5000/api/updatetodo', {
+            await axios.post('https://server-pi-gold.vercel.app/api/updatetodo', {
                 id: todo._id,
                 name: todo.name,
                 description: todo.description,

@@ -1,12 +1,31 @@
 {
-    "version": 2,
-    "builds": [
-        {"src": "*.js", "use": "@vercel/node"}
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ]
-}   
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/users",
+      "dest": "/api/users"
+    },
+    {
+      "src": "/api/sign-in",
+      "dest": "/api/sign-in"
+    },
+    {
+      "src": "/api/todos",
+      "dest": "/api/todos"
+    },
+    {
+      "src": "/api/todos/:id",
+      "dest": "/api/todos/:id"
+    },
+    {
+      "src": "/",
+      "dest": "/"
+    }
+  ]
+}

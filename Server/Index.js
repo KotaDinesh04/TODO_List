@@ -6,13 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors(
-    {
-        origin: ["https://deploy-mern-1whq.vercel.app"],
-        methods: ["POST","GET","DELETE"],
-        credentials: true
-    }
-));
+app.use(cors());
 app.use(express.json());
 
 //Connection
